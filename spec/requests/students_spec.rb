@@ -80,4 +80,18 @@ RSpec.describe 'Student Requests', type: :request do
       expect(response).to redirect_to(students_url)
     end
   end
+  
+  describe 'PATCH /students/:id/transfer' do
+    let!(:student) { create(:student) }
+    let(:school) { create(:school) }
+    let(:school_params) { { id: school.id } }
+
+    it 'transfer the student to another school' do
+      patch student_transfer_url(student, params: { school: school_params })
+
+      expect(student.reload.school_id).to eq(school.id)
+
+      expect(response).to redirect_to(student_url(student))
+    end
+  end
 end

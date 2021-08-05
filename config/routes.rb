@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :schools do
     resources :enrollments
   end
+
+  patch 'students/:id/transfer', to: 'students#transfer', as: 'student_transfer'
 end

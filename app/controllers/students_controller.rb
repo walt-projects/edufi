@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: %i[ show edit update destroy ]
+  before_action :set_student, only: %i[ transfer show edit update destroy ]
 
   # GET /students or /students.json
   def index
@@ -47,6 +47,24 @@ class StudentsController < ApplicationController
     end
   end
 
+  # PATCH/PUT /students/1/transfer
+  def transfer
+    new_school = School.find(school_params[:id])
+    transfer = StudentTransferService.call(@student, new_school)
+    respond_to do |format|
+      if transfer.success?
+        format.html { redirect_to @student, notice: "Student was successfully transferred." }
+        format.json { render :show, status: :ok, location: @student }
+      else
+        format.html { 
+          flash.now[:alert] = transfer.errors.full_messages.to_sentence
+          render :edit, status: :unprocessable_entity 
+        }
+        format.json { render json: transfer.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # DELETE /students/1 or /students/1.json
   def destroy
     @student.destroy
@@ -65,5 +83,9 @@ class StudentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def student_params
       params.require(:student).permit(:first_name, :last_name, :school_id, :cohort_id)
+    end
+
+    def school_params
+      params.require(:school).permit(:id)
     end
 end
