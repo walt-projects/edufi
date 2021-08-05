@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>School:</strong>
+  <%= @enrollment.school.name %>
+</p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @enrollment.student.full_name %>
+</p>
+
+<p>
+  <strong>Cohort:</strong>
+  <%= @enrollment.cohort.name %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @enrollment.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @enrollment.end_date %>
+</p>
+
+<%= link_to 'Edit', edit_school_enrollment_path(@enrollment) %> |
+<%= link_to 'Back', school_enrollments_path %>

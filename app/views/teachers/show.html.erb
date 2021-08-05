@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @teacher.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @teacher.last_name %>
+</p>
+
+<p>
+  <strong>School:</strong>
+  <%= @teacher.school.name %>
+</p>
+
+<%= link_to 'Edit', edit_teacher_path(@teacher) %> |
+<%= link_to 'Back', teachers_path %>
+
+<h3>Teacher's Cohorts and students</h3>
+<% @teacher.cohorts.each do |cohort| %>
+  <%= cohort.name %>
+  <% cohort.students.each do |student| %>
+    <li><%= student.full_name %></li>
+  <%end%>
+<%end%>

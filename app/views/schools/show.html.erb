@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @school.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @school.description %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @school.location %>
+</p>
+
+<%= link_to 'Edit', edit_school_path(@school) %> |
+<%= link_to 'Back', schools_path %>
+
+<h2>Current Cohorts</h2>
+
+<% @school.cohorts.each do |cohort| %>
+  <li><%= cohort.name %></li>
+<% end %>
+
+<h2>Current Students</h2>
+
+<% @school.students.each do |student| %>
+  <li><%= student.full_name %></li>
+<% end %>
+
+<h2>Current Enrollments</h2>
+
+<% @school.enrollments.each do |enrollment| %>
+  <li><%= "#{enrollment.student.full_name} : #{enrollment.cohort.name}" %></li>
+<% end %>
+
+<br>
+<%= link_to 'Manage Enrollments', school_enrollments_path(@school) %>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edufi</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <header class='clearfix'>
+      <div class="nav">
+        <ul>
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Schools", schools_path %></li>
+          <li><%= link_to "Teachers", teachers_path %></li>
+          <li><%= link_to "Students", students_path %></li>
+          <li><%= link_to "Curriculums", curriculums_path %></li>
+          <li><%= link_to "Cohorts", cohorts_path %></li>
+        </ul>
+      </div>
+    </header>
+    <div class='content'>
+      <%= yield %>
+    </div>
+  </body>
+</html>

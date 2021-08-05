@@ -1,0 +1,43 @@
+<h1><u>Welcome To EduFi, the education portal of the future.</u></h1>
+
+<h4>There are currently <%= @schools.count %> schools in our database
+and over <%= @students_count - 1 %> students who are all supported by
+<%=@teacher_count%> teachers.</h4>
+
+<p>Select your desired School to start your journey:</p>
+
+<% @schools.each do |school| %>
+  <li><%= link_to school.name, school %></li>
+<%end%>
+
+<h2>Your Tasks, if you decide to complete them are to</h2>
+<li>
+  Create a student transfer page that will transfer one student from one school to another.
+  If the student has an active enrollment, display a message letting the user know the
+  student cannot be moved because they have an active enrollment.
+  Indicate to us where you have decided to place the transfer student tool.
+</li>
+
+<li>
+  Run the test suite and fix all the tests that are currently erroring.
+  You can decide whether the tests are broken or the application is broken and implement
+  the fix accordingly.
+</li>
+
+<li>
+  BONUS #1: Feel free to refactor/update anything in the codebase that you think
+  could be improved (it could either be about the code quality or the functionality)
+</li>
+
+<li>
+  BONUS #2: Integrate the Google Maps API, or any other MAP api to show a map of the
+  School based on its location. Display the School map on the School show page.
+</li>
+
+<h3>
+  Please make sure you initiate a git repo locally with the provided code and include
+  the `.git` folder with your commits.
+</h3>
+
+
+<p><b>Good luck.</b></p>

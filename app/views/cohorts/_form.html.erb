@@ -1,0 +1,38 @@
+<%= form_with(model: cohort, local: true) do |form| %>
+  <% if cohort.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cohort.errors.count, "error") %> prohibited this cohort from being saved:</h2>
+
+      <ul>
+      <% cohort.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= form.label :school_id %>
+    <%= form.collection_select(:school_id, @schools, :id, :name, prompt: true) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :teacher_id %>
+    <%= form.collection_select(:teacher_id, @teachers, :id, :full_name_w_school, prompt: true) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :curriculum_id %>
+    <%= form.collection_select(:curriculum_id, @curriculums, :id, :title, prompt: true) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

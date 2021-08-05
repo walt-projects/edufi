@@ -1,0 +1,39 @@
+<%= form_with(model: [@school, @enrollment], local: true) do |form| %>
+  <% if enrollment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(enrollment.errors.count, "error") %> prohibited this enrollment from being saved:</h2>
+
+      <ul>
+      <% enrollment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :school_id, value: @enrollment.school_id %>
+
+  <div class="field">
+    <%= form.label :student_id %>
+    <%= form.collection_select(:student_id, @students, :id, :full_name, prompt: true) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cohort_id %>
+    <%= form.collection_select(:cohort_id, @cohorts, :id, :name, prompt: true) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.date_select :start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.date_select :end_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
