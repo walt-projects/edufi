@@ -23,11 +23,11 @@ class EnrollmentsController < ApplicationController
 
   # POST /enrollments or /enrollments.json
   def create
-    @enrollment = Enrollment.new(enrollment_params)
+    @enrollment = @school.enrollments.build(enrollment_params)
 
     respond_to do |format|
       if @enrollment.save
-        format.html { redirect_to school_enrollment_path(@enrollment), notice: "Enrollment was successfully created." }
+        format.html { redirect_to school_enrollments_path(@school), notice: "Enrollment was successfully created." }
         format.json { render :show, status: :created, location: @enrollment }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class EnrollmentsController < ApplicationController
   def update
     respond_to do |format|
       if @enrollment.update(enrollment_params)
-        format.html { redirect_to school_enrollment_path(@enrollment), notice: "Enrollment was successfully updated." }
+        format.html { redirect_to school_enrollment_path(@school), notice: "Enrollment was successfully updated." }
         format.json { render :show, status: :ok, location: @enrollment }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class EnrollmentsController < ApplicationController
   def destroy
     @enrollment.destroy
     respond_to do |format|
-      format.html { redirect_to school_enrollments_url, notice: "Enrollment was successfully destroyed." }
+      format.html { redirect_to school_enrollments_url(@school), notice: "Enrollment was successfully destroyed." }
       format.json { head :no_content }
     end
   end
