@@ -5,4 +5,6 @@ class Enrollment < ApplicationRecord
 
   validates :student, presence: true, uniqueness: { scope: :cohort_id }
   validates :school, :cohort, presence: true
+
+  scope :current_enrollments, -> { where("end_date >= ?", DateTime.now) }
 end

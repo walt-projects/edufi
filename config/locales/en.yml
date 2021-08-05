@@ -30,4 +30,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  services:
+    student_transfer:
+      failure: "Student cannot be moved because they have an active enrollment!"
